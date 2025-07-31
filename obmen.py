@@ -3,12 +3,14 @@ import json
 import pprint
 from tkinter import*
 from tkinter import messagebox as mb
+from tkinter import ttk
 
-from bottle import response
+
+
 
 
 def exchange():
-    code = entry.get()#получает информацию из поля entry
+    code = combobox.get()#получает информацию из поля entry
 
     if code:# если код есть то работаем дальше, если код не введен то программа должна попросить ввести код
         try:
@@ -30,10 +32,13 @@ window = Tk()
 window.title('Курс обмена валют')
 window.geometry("360x180")
 
-Label(text="Введите курс валют").pack(padx=10, pady=10)#метку нигде использовать не будем
+Label(text="Выберите код валюты").pack(padx=10, pady=10)#метку нигде использовать не будем
+cur = ["RUB","EUR","GBP","JPY","CNY","UZS","CHF","AED","CAD"]#создаем список валют
+combobox= ttk.Combobox(values=cur)
+combobox.pack(padx=10, pady=10)
 
-entry = Entry()#будем к этой метке обращаться окно не указываем , т.к. будет отображаться в виндов
-entry.pack(padx=10, pady=10)
+#entry = Entry()#будем к этой метке обращаться окно не указываем , т.к. будет отображаться в виндов
+#entry.pack(padx=10, pady=10)
 
 Button(text="получить курс обмена к доллару", command=exchange).pack(padx=10, pady=10)#к кнопке обращаться не будем, поэтому имя не присваивается, будем просто нажимать кнопку
 
